@@ -15,6 +15,9 @@ php type-juggling.php
 
 php .\variables.php
 
+## Find php.ini
+php --ini
+
 ## Quizzes
 - start on week 3
 - every 2 weeks
