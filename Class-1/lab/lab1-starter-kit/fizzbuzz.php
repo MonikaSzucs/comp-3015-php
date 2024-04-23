@@ -12,13 +12,18 @@
 </head>
 
 <body>
-
-    <?php for($i = 0; $i < 100; $i++): 
+    <?php for($i = $start; $i < 100; $i++): 
     // write your FizzBuzz program here
     // want to use alternative syntax - write it like this format below with these brackets
     ?>
         <div>
-            <?php if ($i == 1):?>
+            <?php if ($i % 3 === 0 && $i % 5 === 0):?>
+                <?php echo "FizzBuzz" ?>
+            <?php elseif ($i % 3 === 0):?>
+                <?php echo "Fizz" ?>
+            <?php elseif ($i % 5 === 0):?>
+                <?php echo "Buzz" ?>
+            <?php else:?>
                 <?php echo $i ?>
             <?php endif; ?>
         </div>

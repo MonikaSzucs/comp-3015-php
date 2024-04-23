@@ -15,6 +15,12 @@
  */
 function filterInvalidShows(array $shows): array {
     // TODO filter out nulls or empty 
+    foreach ($shows as $show => $currentShow) {
+        if($currentShow !== "") {
+            echo "$show: $currentShow" . PHP_EOL;
+        }
+    }
+    
     return [];
 }
 
@@ -56,6 +62,7 @@ $shows = [
     // Here, you should call your functions in order to filter and then output the show info.
     // here we want to eventually call functions
     $validShows = filterInvalidShows($shows);
+    echo "Fizz";
     displayShowInfo($validShows); // or you could nest function from above
 
     ?>
