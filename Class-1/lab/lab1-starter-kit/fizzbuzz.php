@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <?php for($i = $start; $i < 100; $i++): 
+    <?php for($i = 1; $i < 100; $i++): 
     // write your FizzBuzz program here
     // want to use alternative syntax - write it like this format below with these brackets
     ?>
