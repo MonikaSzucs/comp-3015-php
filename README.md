@@ -21,3 +21,9 @@ php --ini
 ## Quizzes
 - start on week 3
 - every 2 weeks
+
+## PHP configuration information
+```
+phpinfo()
+```
+- will output configuration infromation. Modify particular vlaues in your php.ini file will change this output.

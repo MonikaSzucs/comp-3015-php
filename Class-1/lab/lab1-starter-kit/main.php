@@ -17,7 +17,7 @@
         $items = array();
 
         foreach ($shows as $show => $currentShow) {
-            if($currentShow !== "" && $show != "" && $currentShow != null) {
+            if($currentShow !== "" && $show !== "" && $currentShow !== null) {
                 $items[$show] = $currentShow; //"$show: $currentShow" . PHP_EOL;
             }
         }
