@@ -27,3 +27,21 @@ php --ini
 phpinfo()
 ```
 - will output configuration infromation. Modify particular vlaues in your php.ini file will change this output.
+
+
+## Quizzes
+- 30 mintes
+- 10 questions
+- mix of code and MC
+
+## Quiz 1
+- need to know explode and implode 
+- know interfaces and how something represented as JSON
+- its a take home quiz
+
+## Screen recording for each lab
+- talk about problems
+- stumbling points
+- show mini video recording about your code
+- show with github link you record
+- can do a unlisted youtube video make it less than 2 minutes 
