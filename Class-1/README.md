@@ -40,9 +40,9 @@ determine which running process the data should be sent to.
 - Ports identify specific processes and are used in network communication
 - Commonly used ports are associated with specific services:
 ```
-80 → HTTP
-443 → HTTPS
-22 → SSH
+80 → HTTP - not secure
+443 → HTTPS - secure for credit card payments
+22 → SSH - make secure connection to remote devices
 ```
 
 ## Ports
