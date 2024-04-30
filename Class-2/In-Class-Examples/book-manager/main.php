@@ -17,6 +17,17 @@ function addBook(string $bookName): void
 function updateBook(string $currentName, string $newName): void
 {
 	// TODO
+	$fileContent = file_get_contents(BOOKS_FILE);
+	$bookNames = explode(PHP_EOL, $fileContent);
+	for ($i = 0; $i < count($bookNames); $i++) {
+		if ($bookNames[$i] === $currentName) {
+			$bookNames[$i] = $newName;
+			break;
+		}
+	}
+	// joins all the books back together again
+	$bookNames = implode(PHP_EOL, $bookNames);
+	file_put_contents(BOOKS_FILE, $bookNames);
 }
 
 /**
@@ -29,8 +40,11 @@ function deleteBook(string $bookName): void
 	for ($i = 0; $i < count($bookNames); $i++) {
 		if ($bookNames[$i] === $bookName) {
 			unset($bookNames[$i]);
+			// we can add a break if we only wanted to find the first occurance of it
+			// break;
 		}
 	}
+	// joins all the books back together again
 	$bookNames = implode(PHP_EOL, $bookNames);
 	file_put_contents(BOOKS_FILE, $bookNames);
 }

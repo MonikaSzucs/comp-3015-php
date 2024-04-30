@@ -4,6 +4,7 @@ require_once 'Model.php';
 
 class User extends Model
 {
+    // if we make this private thtne the superuser will not be able to get the email and password
     protected string $email;
     protected string $password;
 
@@ -11,8 +12,10 @@ class User extends Model
     {
         $this->email = $email;
         $this->password = $password;
-        parent::__construct($id, '...', '...');
+        parent::__construct($id, '...', '...'); // call to parent constructor
     }
+
+    // new User() 
 
     public function getEmail(): string
     {

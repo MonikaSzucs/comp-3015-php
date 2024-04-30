@@ -2,14 +2,22 @@
 
 class Model
 {
+    // could set these variables to protected
     private string $id;
-    private string $created_at;
-    private string $updated_at;
+    private string $createdAt;
+    private string $updatedAt;
+    // how can I get these private variables?
+    // protected means your able to get it with any sub class
 
-    public function __construct(string $id, string $created_at, string $updated_at)
+    public function __construct(string $id, string $createdAt, string $updatedAt)
     {
         $this->id = $id;
-        $this->created_at = $created_at;
-        $this->updated_at = $updated_at;
+        $this->createdAt = $createdAt;
+        $this->updatedAt = $updatedAt;
+    }
+
+    // this is how you grab a private info when you call it from main
+    public function getId() {
+        return $this->getId();
     }
 }
