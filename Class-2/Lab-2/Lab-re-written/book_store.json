@@ -1,19 +1,17 @@
 [
     {
-        "title": "Lord of the rings",
-        "author": "j.r.. tol",
-        "isbn": "9780358653035"
-    }
-]
-[
-    {
-        "title": "Lord of the rings",
-        "author": "j.r.. tol",
+        "name": "Lord of the rings",
+        "author": "",
         "isbn": "9780358653035"
     },
     {
-        "title": "A Brief History of time",
-        "author": "Stephen Hawking",
+        "name": "A Brief History of time",
+        "author": "",
         "isbn": "9780553380163"
+    },
+    {
+        "name": "20,000 Leagues Under the Sea",
+        "author": "Jules Verne",
+        "isbn": "9781949460575"
     }
 ]

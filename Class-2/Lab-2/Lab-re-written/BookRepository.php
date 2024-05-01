@@ -44,48 +44,10 @@ class BookRepository
 
     public function saveBook(Book $book): void {
         // TODO
-        //var_dump($book->getName());
-        //var_dump($book->getAuthor());
-        //var_dump($book->getInternationalStandardBookNumber());
+        $books = $this->getAllBooks(); // use $this->getAllBooks() for the real lab instead of assigning an empty array here
+        $books[] = $book; // add new book to the array
 
-        //$all[] = getAllBooks();
-        $oneBook[] = $book;
-        // $oneBook = $book->jsonSerialize();
-
-        // foreach ($book as $b) {
-        //     echo $b . PHP_EOL;
-        // }
-
-        //var_dump($oneBook);
-
-        // $fileContent = file_get_contents($filename);
-        // $bookNames = explode(PHP_EOL, $fileContent);
-        // for ($i = 0; $i < count($bookNames); $i++) {
-        //     if ($bookNames[$i] === $currentName) {
-        //         $bookNames[$i] = $newName;
-        //         break;
-        //     }
-        // }
-        // // joins all the books back together again
-        // $bookNames = implode(PHP_EOL, $bookNames);
-        // file_put_contents(filename, $bookNames);
-
-        $file = file_get_contents('book_store.json');
-        $data = json_decode($file);
-        unset($file);//prevent memory leaks for large json.
-        //insert data here
-        $data[] = array(
-            'title' => $book->getName(),
-            'author' => $book->getAuthor(),
-            'isbn' => $book->getInternationalStandardBookNumber()
-        );
-        //save the file
-        //file_put_contents('book_store.json',json_encode($data));
-    
-        file_put_contents('book_store.json', json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL, FILE_APPEND);
-        unset($data);//release memory
-
-        
+        file_put_contents('book_store.json', json_encode($books, JSON_PRETTY_PRINT));
     }
 }
 
