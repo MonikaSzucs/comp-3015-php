@@ -46,10 +46,10 @@ class Book implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-                'name' => $this->getName(),
-                'author' => $this->getAuthor(),
-                'isbn' => $this->getInternationalStandardBookNumber()
-            ];
+            'name' => $this->getName(),
+            'author' => $this->getAuthor(),
+            'isbn' => $this->getInternationalStandardBookNumber()
+        ];
     }
 }
 ?>
