@@ -30,9 +30,10 @@ phpinfo()
 
 
 ## Quizzes
-- 30 mintes
+- first one he is giving us a week
 - 10 questions
 - mix of code and MC
+- need to do recording lab 2 and forward
 
 ## Quiz 1
 - need to know explode and implode 
@@ -45,3 +46,5 @@ phpinfo()
 - show mini video recording about your code
 - show with github link you record
 - can do a unlisted youtube video make it less than 2 minutes 
+
+
