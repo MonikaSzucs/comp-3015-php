@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Book.php';
+
 class BookRepository
 {
     private string $filename;
@@ -56,7 +58,34 @@ class BookRepository
 
         //var_dump($oneBook);
 
-        file_put_contents('book_store.json', json_encode($oneBook, JSON_PRETTY_PRINT) . PHP_EOL, FILE_APPEND);
+        // $fileContent = file_get_contents($filename);
+        // $bookNames = explode(PHP_EOL, $fileContent);
+        // for ($i = 0; $i < count($bookNames); $i++) {
+        //     if ($bookNames[$i] === $currentName) {
+        //         $bookNames[$i] = $newName;
+        //         break;
+        //     }
+        // }
+        // // joins all the books back together again
+        // $bookNames = implode(PHP_EOL, $bookNames);
+        // file_put_contents(filename, $bookNames);
+
+        $file = file_get_contents('book_store.json');
+        $data = json_decode($file);
+        unset($file);//prevent memory leaks for large json.
+        //insert data here
+        $data[] = array(
+            'title' => $book->getName(),
+            'author' => $book->getAuthor(),
+            'isbn' => $book->getInternationalStandardBookNumber()
+        );
+        //save the file
+        //file_put_contents('book_store.json',json_encode($data));
+    
+        file_put_contents('book_store.json', json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL, FILE_APPEND);
+        unset($data);//release memory
+
+        
     }
 }
 

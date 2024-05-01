@@ -1,13 +1,18 @@
 [
     {
-        "name": "Lord of the rings",
+        "title": "Lord of the rings",
         "author": "j.r.. tol",
         "isbn": "9780358653035"
     }
 ]
 [
     {
-        "name": "A Brief History of time",
+        "title": "Lord of the rings",
+        "author": "j.r.. tol",
+        "isbn": "9780358653035"
+    },
+    {
+        "title": "A Brief History of time",
         "author": "Stephen Hawking",
         "isbn": "9780553380163"
     }
