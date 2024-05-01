@@ -20,21 +20,33 @@ class Book implements JsonSerializable
         $this->name = $name;
     }
 
-    public function getAuthor(): string {
-        return $this->authorName;
-    }
+    /**
+	 * @return string
+	 */
+	public function getAuthor(): string {
+		return $this->authorName;
+	}
 
-    public function setAuthor(string $authorName): void {
-        $this->authorName = $authorName;
-    }
+	/**
+	 * @param string $authorName
+	 */
+	public function setAuthor(string $authorName): void {
+		$this->authorName = $authorName;
+	}
 
-    public function getInternationalStandardBookNumber(): string {
-        return $this->isbn;
-    }
+    /**
+	 * @return string
+	 */
+	public function getInternationalStandardBookNumber(): string {
+		return $this->isbn;
+	}
 
-    public function setInternationalStandardBookNumber(string $isbn): void {
-        $this->isbn = $isbn;
-    }
+	/**
+	 * @param string $isbn
+	 */
+	public function setInternationalStandardBookNumber(string $isbn): void {
+		$this->isbn = $isbn;
+	}
 
     public function fill(array $bookData): Book {
         foreach ($bookData as $key => $value) {
@@ -46,9 +58,9 @@ class Book implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return [
-            'name' => $this->getName(),
-            'author' => $this->getAuthor(),
-            'isbn' => $this->getInternationalStandardBookNumber()
+            'name' => $this->name,
+            'authorName' => $this->authorName,
+            'isbn' => $this->isbn
         ];
     }
 }

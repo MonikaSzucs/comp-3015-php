@@ -49,6 +49,48 @@ class BookRepository
 
         file_put_contents('book_store.json', json_encode($books, JSON_PRETTY_PRINT));
     }
+
+    /**
+	 * Updates the book in the file with the given $isbn (the contents of that book is replaced by $newBook in the file)
+	 * Hint: are you seeing the file have indexes added to the JSON? Look into https://www.php.net/manual/en/function.array-values.php
+	 * @param string $isbn
+	 * @param Book $newBook
+	 */
+	public function updateBook(string $isbn, Book $newBook): void {
+		// TODO
+        var_dump($isbn);
+        $fileContent = file_get_contents('book_store.json');
+        $bookNames = explode(PHP_EOL, $fileContent);
+        for ($i = 0; $i < count($bookNames); $i++) {
+            var_dump($bookNames[$i]);
+            // if ($bookNames[$i] === $newBook->get) {
+            //     $bookNames[$i] = $isbn;
+            //     break;
+            // }
+        }
+        // joins all the books back together again
+        $bookNames = implode(PHP_EOL, $bookNames);
+        file_put_contents('book_store.json', $bookNames);
+	}
+
+	/**
+	 * Deletes the book in the file with the given $isbn.
+	 * Seeing indexes be added to the JSON? Look into https://www.php.net/manual/en/function.array-values.php
+	 * @param string $isbn
+	 */
+	public function deleteBookByISBN(string $isbn): void {
+		// TODO
+		$books = $this->getAllBooks();
+
+		foreach($books as $index => $book) {
+			if($book->setInternationalStandardBookNumber($isbn) === $isbn) {
+				// we should delete it then here
+				unset($book[$index]); 
+			}
+		}
+
+		// save $books to the file in json format then
+	}
 }
 
 ?>
