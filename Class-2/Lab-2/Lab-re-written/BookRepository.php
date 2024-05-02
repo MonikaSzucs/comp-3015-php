@@ -50,6 +50,47 @@ class BookRepository
         file_put_contents('book_store.json', json_encode($books, JSON_PRETTY_PRINT));
     }
 
+	/**
+	  * Retrieves the book with the given ISBN, or null if no book with the specified ISBN is found.
+	  * Note: for the purposes of this lab you may return the first occurrence if there are multiple books with the same ISBN in the file.
+	  *
+	  * @param string $isbn
+	  * @return Book|null
+	  */
+	public function getBookByISBN(string $isbn): Book|null {
+		// TODO
+		// for the function getBookByISBN are we grabbing the book from the file 'book_stre.json' or somwhere else?
+		$books = $this->getAllBooks();
+		
+		foreach ($books as $book) {
+			if($books['isbn'] === $isbn) {
+				return $book;
+			}
+		}
+		return null;
+	}
+
+	/**
+	* Retrieves the book with the given title, or null if no book of that title is found.
+	* Note: for the purposes of this lab you may return the first occurrence if there are multiple books of the same title.
+	*
+	* @param string $title
+	* @return Book|null
+	*/
+	public function getBookByTitle(string $title): Book|null {
+	   	// TODO
+		$books = $this->getAllBooks();
+		
+		foreach ($books as $book) {
+			var_dump($book);
+			if($book->getName() === $title) {
+				return $book;
+			}
+		}
+		return null;
+	}
+
+
     /**
 	 * Updates the book in the file with the given $isbn (the contents of that book is replaced by $newBook in the file)
 	 * Hint: are you seeing the file have indexes added to the JSON? Look into https://www.php.net/manual/en/function.array-values.php
@@ -58,7 +99,6 @@ class BookRepository
 	 */
 	public function updateBook(string $isbn, Book $newBook): void {
 		// TODO
-        var_dump($isbn);
         $fileContent = file_get_contents('book_store.json');
 
 		$books = json_decode($fileContent, true);
@@ -88,22 +128,16 @@ class BookRepository
 
 		// print all books inside $books using the index
 		foreach ($books as $index => $book) {
-			// var_dump("book at index %d = %s", $index, $books[$index]);
 			if ($books[$index]->getInternationalStandardBookNumber() == $isbn) {
 				// we found our book
 				unset($books[$index]); // gets rid of that object
 				$books = array_values($books);
-				var_dump("books after unsetting: ", $books);
 				break;
 			}
 		}
 
-		var_dump("books after foreach loop : ", $books);
 		file_put_contents('book_store.json', "");	// empties the file
-
 		file_put_contents('book_store.json', json_encode($books, JSON_PRETTY_PRINT));
-
-		// save $books to the file in json format then
 	}
 }
 

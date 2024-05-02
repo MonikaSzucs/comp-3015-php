@@ -38,5 +38,15 @@ $bookRepository->updateBook("9780358653035", new Book("The Lord of the Rings", "
 $bookRepository->updateBook("9780553380163", new Book("A Brief History of Time", "Stephen Hawking", "9780553380163"));
 $bookRepository->deleteBookByISBN("9780553380163");
 
+// Get the updated books and loop over them
+$books = $bookRepository->getAllBooks();
+$briefHistoryOfTimeResult = $bookRepository->getBookByTitle('A Brief History of Time');
+if ($briefHistoryOfTimeResult === null) {
+	echo '"A Brief History of Time" is not in the repository' . PHP_EOL;
+}
 
+printf(PHP_EOL . "There are now %d books saved to the store:" . PHP_EOL, count($books));
+foreach ($books as $book) {
+	printBook($book);
+}
 ?>
