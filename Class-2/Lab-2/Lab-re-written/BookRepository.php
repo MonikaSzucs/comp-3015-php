@@ -60,17 +60,21 @@ class BookRepository
 		// TODO
         var_dump($isbn);
         $fileContent = file_get_contents('book_store.json');
-        $bookNames = explode(PHP_EOL, $fileContent);
-        for ($i = 0; $i < count($bookNames); $i++) {
-            var_dump($bookNames[$i]);
-            // if ($bookNames[$i] === $newBook->get) {
-            //     $bookNames[$i] = $isbn;
-            //     break;
-            // }
-        }
-        // joins all the books back together again
-        $bookNames = implode(PHP_EOL, $bookNames);
-        file_put_contents('book_store.json', $bookNames);
+
+		$books = json_decode($fileContent, true);
+
+		foreach ($books as &$book) {
+			if ($book['isbn'] === $isbn) {	// now we know which book we're talking about	
+				$book["name"] = $newBook->getName();
+				$book["authorName"] = $newBook->getAuthor();
+				$book["isbn"] = $newBook->getInternationalStandardBookNumber();
+				break;
+			}
+		}
+		unset($book);
+
+        $books = json_encode($books, JSON_PRETTY_PRINT);
+        file_put_contents('book_store.json', $books);
 	}
 
 	/**
@@ -82,12 +86,22 @@ class BookRepository
 		// TODO
 		$books = $this->getAllBooks();
 
-		foreach($books as $index => $book) {
-			if($book->setInternationalStandardBookNumber($isbn) === $isbn) {
-				// we should delete it then here
-				unset($book[$index]); 
+		// print all books inside $books using the index
+		foreach ($books as $index => $book) {
+			// var_dump("book at index %d = %s", $index, $books[$index]);
+			if ($books[$index]->getInternationalStandardBookNumber() == $isbn) {
+				// we found our book
+				unset($books[$index]); // gets rid of that object
+				$books = array_values($books);
+				var_dump("books after unsetting: ", $books);
+				break;
 			}
 		}
+
+		var_dump("books after foreach loop : ", $books);
+		file_put_contents('book_store.json', "");	// empties the file
+
+		file_put_contents('book_store.json', json_encode($books, JSON_PRETTY_PRINT));
 
 		// save $books to the file in json format then
 	}
