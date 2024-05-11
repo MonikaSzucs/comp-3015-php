@@ -54,6 +54,15 @@ class ArticleRepository
 	public function deleteArticleById(int $id): void
 	{
 		// TODO
+		$articles = $this->getAllArticles();
+
+		foreach($articles as $index => $article) {
+			if($articles[$index]->getId() === $id) {
+				unset($articles[$index]);
+				$articles = array_values($articles);
+				break;
+			}
+		}
 	}
 
 	/**
@@ -62,6 +71,10 @@ class ArticleRepository
 	public function saveArticle(Article $article): void
 	{
 		// TODO
+		$articles = $this->getAllArticles();
+		$articles[] = $article;
+
+		file_put_contents('../articles.json', json_encode($articles, JSON_PRETTY_PRINT));
 	}
 
 	/**
@@ -71,5 +84,22 @@ class ArticleRepository
 	public function updateArticle(int $id, Article $updatedArticle): void
 	{
 		// TODO
+
+		$fileContent = file_get_contents('../articles.json');
+
+		$articles = json_decode($fileContent, true);
+
+		foreach($articles as &$article) {
+			if($article['id'] === $id) {
+				$article['id'] = $updatedArticle->getId();
+				$article['title'] = $updatedArticle->getTitle();
+				$article['url'] = $updatedArticle->getUrl();
+				break;
+			}
+		}
+		unset($article);
+
+		$articles = json_encode($articles, JSON_PRETTY_PRINT);
+		file_put_contents('../articles.json', $articles);
 	}
 }

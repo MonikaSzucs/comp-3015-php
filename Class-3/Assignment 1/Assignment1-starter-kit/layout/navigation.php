@@ -7,9 +7,12 @@
 						<a href="index.php">COMP 3015 News</a>
 					</h2>
 				</div>
-				<div class="hidden sm:ml-6 sm:block">
-					<div class="flex space-x-4">
+				<div class="flex flex-row">
+					<div>
 						<a href="new_article.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">New Article</a>
+					</div>
+					<div>
+						<a href="delete_article.php" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Delete Article</a>
 					</div>
 				</div>
 			</div>

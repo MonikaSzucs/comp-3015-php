@@ -20,5 +20,6 @@ $article = $articleRepository->getArticleById($_GET['id']);
 </head>
 <body>
     <input type="text" name="title" value="<?= $article->getTitle() ?>">
+    <!-- <\? php echo-->
 </body>
 </html>
