@@ -57,8 +57,8 @@ require_once 'helpers/helpers.php';
 
 <?php
 
-if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-	$id = 0;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	$id = time();
 	$title = $_POST['title'];
 	$link = $_POST['link'];
 
@@ -74,6 +74,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 	$filePath = 'articles.json';
 
 	if(file_exists($filePath)) {
+		var_dump("inside if statement for file path");
 
 		$articleRepository = new ArticleRepository('articles.json');
 		
@@ -88,7 +89,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 	var_dump("Hello");
 	//$currentData[] = $this.
 
-	header("Location: index.php?from=new_article&msg=thankyou");
+	// header("Location: index.php?from=new_article&msg=thankyou");
 	$id++;
 	exit();
+} else {
+	var_dump($_SERVER);
 }
+
+?>

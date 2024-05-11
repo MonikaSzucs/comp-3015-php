@@ -71,10 +71,10 @@ class ArticleRepository
 	public function saveArticle(Article $article): void
 	{
 		// TODO
-		$articles = $this->getAllArticles();
-		$articles[] = $article;
+		$articles = $this->getAllArticles();  // $articles is an array of Article
+		array_push($articles, $article);
 
-		file_put_contents('../articles.json', json_encode($articles, JSON_PRETTY_PRINT));
+		file_put_contents($this->filename, json_encode($articles, JSON_PRETTY_PRINT));
 	}
 
 	/**

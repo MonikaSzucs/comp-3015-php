@@ -13,28 +13,32 @@ $articles = $articleRepository->getAllArticles();
 
 <?php require_once 'layout/header.php' ?>
 
-<body>
+<?php
+// if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+// if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $articleRepository = new ArticleRepository('articles.json');
+    $articleRepository->deleteArticleById($_POST['id']);
+    // $id = $_DELETE('id');
+    // var_dump("DELETE CALLED on id ", $id);
 
-    <?php require_once 'layout/navigation.php' ?>
-
-    <div class="mx-auto max-w-5xl sm:px-6 lg:px-8">
-
-        <h2 id="page-title" class="text-xl text-center font-semibold text-indigo-700 mt-10">Delete Article</h2>
-
-        <div class="overflow-hidden">
-            <ul role="list">
-
-                <?php foreach ($articles as $article) : ?>
-                    <!-- display your articles here -->
-                    
-                <?php endforeach; ?>
-
-            </ul>
-        </div>
-
-    </div>
-
-
-</body>
-
-</html>
+    // $articleRepository->deleteArticleById($id);
+    // file_put_contents('articles.json', ""); // makes file empty again
+    // file_put_contents('articles.json', $articles); // writes new list of articles
+    
+    // foreach ($articles as $index => $article) {
+    //     if ($article->getId() == $id) {
+    //         // remove from the array
+    //         unset($articles[$index]);
+    //         $articles = array_values($articles);
+    //         break;
+    //     }
+    // }
+    
+    // $articleRepository->
+    
+} 
+// else {
+//     var_dump("WHAAT>?? ", $_POST);
+// }
+?>
