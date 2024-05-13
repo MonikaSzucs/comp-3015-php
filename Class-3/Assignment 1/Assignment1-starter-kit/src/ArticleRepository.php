@@ -63,6 +63,10 @@ class ArticleRepository
 				break;
 			}
 		}
+
+		// save back to the file
+		file_put_contents($this->filename, "");
+		file_put_contents($this->filename, json_encode($articles, JSON_PRETTY_PRINT));
 	}
 
 	/**

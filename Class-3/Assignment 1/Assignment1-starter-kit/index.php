@@ -25,13 +25,18 @@ $articles = $articleRepository->getAllArticles();
                 <?php foreach ($articles as $article) : ?>
                     <!-- display your articles here -->
                     <div>
-                        <form>
-                            <?php printf($article->getTitle());?>
-                            <?php printf($article->getUrl());?>
-    
-                            <button type="submit" formmethod="delete" formaction="delete_article.php">Delete</button>
+                        <?php printf($article->getTitle());?>
+                        <?php printf($article->getUrl());?>
+                        <form method="post" action="delete_article.php">
+                            <input name="id" type="hidden" value="<?= $article->getId() ?>">
+                            <input type="submit" value="delete">
+                        </form>
+                        <form method="POST" action="update_article.php">
+                            <input name="id" type="hidden" value="<?= $article->getId() ?>">
+                            <input type="submit" value="update">
                         </form>
                     </div>
+                    <br>
                 <?php endforeach; ?>
 
             </ul>

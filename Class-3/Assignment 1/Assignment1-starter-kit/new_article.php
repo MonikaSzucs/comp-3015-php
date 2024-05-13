@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$articleRepository = new ArticleRepository('articles.json');
 		
 		// add new books
-		$articleNew = new Article($id, $title, $link);
+		$articleNew = new Article($title, $link);
 		printf("hi", $articleNew);
 		$articleRepository->saveArticle($articleNew);
 

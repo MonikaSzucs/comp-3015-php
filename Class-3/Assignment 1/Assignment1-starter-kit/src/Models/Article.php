@@ -12,7 +12,7 @@ class Article implements JsonSerializable
 	 * @param string $title
 	 * @param string $url
 	 */
-	public function __construct(int $id, string $title = '', string $url = '')
+	public function __construct(string $title = '', string $url = '')
 	{
 		$this->id = time();
 		$this->title = $title;
