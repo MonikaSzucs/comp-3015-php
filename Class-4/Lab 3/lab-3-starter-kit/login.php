@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $emailGranted = false;
     $passwordGranted = false;
 
-    echo validateemail($_POST['email']);
+    // echo validateemail($_POST['email']);
 
     if (empty($_POST['email']) || !validateemail($_POST['email'])) {
         $_SESSION['email_error'] = 'An email is required and must end in @bcit.ca.';
