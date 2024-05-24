@@ -89,7 +89,7 @@ class ArticleRepository
 	{
 		// TODO
 
-		$fileContent = file_get_contents('../articles.json');
+		$fileContent = file_get_contents($this->filename);
 
 		$articles = json_decode($fileContent, true);
 
@@ -101,9 +101,10 @@ class ArticleRepository
 				break;
 			}
 		}
-		unset($article);
+		// unset($article);
 
 		$articles = json_encode($articles, JSON_PRETTY_PRINT);
-		file_put_contents('../articles.json', $articles);
+		file_put_contents($this->filename, "");
+		file_put_contents($this->filename, $articles);
 	}
 }

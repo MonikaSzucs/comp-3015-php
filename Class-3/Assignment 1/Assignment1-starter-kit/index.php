@@ -31,7 +31,7 @@ $articles = $articleRepository->getAllArticles();
                             <input name="id" type="hidden" value="<?= $article->getId() ?>">
                             <input type="submit" value="delete">
                         </form>
-                        <form method="POST" action="update_article.php">
+                        <form method="GET" action="update_article.php">
                             <input name="id" type="hidden" value="<?= $article->getId() ?>">
                             <input type="submit" value="update">
                         </form>
