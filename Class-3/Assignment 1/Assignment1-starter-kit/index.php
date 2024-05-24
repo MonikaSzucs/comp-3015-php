@@ -26,7 +26,7 @@ $articles = $articleRepository->getAllArticles();
                     <!-- display your articles here -->
                     <div>
                         <?php printf($article->getTitle());?>
-                        <?php printf($article->getUrl());?>
+                        <a href=<?php printf($article->getUrl());?> target="_blank"><?php printf($article->getUrl());?></a>
                         <form method="post" action="delete_article.php">
                             <input name="id" type="hidden" value="<?= $article->getId() ?>">
                             <input type="submit" value="delete">
