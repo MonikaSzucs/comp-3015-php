@@ -15,12 +15,10 @@ $articles = $articleRepository->getAllArticles();
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump("INSIDE POST FOR DELETE");
-
     $articleRepository = new ArticleRepository('articles.json');
-    var_dump("value of id: ", $_POST['id']);
+
     $articleRepository->deleteArticleById($_POST['id']);
-    header('Location: http://' . $_SERVER['HTTP_HOST']);
+    header('Location: http://' . $_SERVER['HTTP_HOST']); // grab url
     exit();
 } else {
     var_dump($_SERVER);

@@ -11,30 +11,35 @@ $articles = $articleRepository->getAllArticles();
 
 <?php require_once 'layout/header.php' ?>
 
-<body>
+<body class="bg-white">
 
     <?php require_once 'layout/navigation.php' ?>
 
-    <div class="mx-auto max-w-5xl sm:px-6 lg:px-8">
+    <div class="mx-auto py-8 max-w-5xl sm:px-6 lg:px-8">
 
-        <h2 id="page-title" class="text-xl text-center font-semibold text-indigo-700 mt-10">Articles</h2>
+        <h2 id="page-title" class="text-5xl text-center text-primary font-semibold text-neutral-content-700 mt-10">Articles</h2>
 
         <div class="overflow-hidden">
             <ul role="list">
 
                 <?php foreach ($articles as $article) : ?>
                     <!-- display your articles here -->
-                    <div>
-                        <?php printf($article->getTitle());?>
-                        <a href=<?php printf($article->getUrl());?> target="_blank"><?php printf($article->getUrl());?></a>
-                        <form method="post" action="delete_article.php">
-                            <input name="id" type="hidden" value="<?= $article->getId() ?>">
-                            <input type="submit" value="delete">
-                        </form>
-                        <form method="GET" action="update_article.php">
-                            <input name="id" type="hidden" value="<?= $article->getId() ?>">
-                            <input type="submit" value="update">
-                        </form>
+                    <div class="">
+                        <div class="card-body">
+                            <h2 class="text-xl font-bold text-secondary mb-4"><?php printf($article->getTitle());?></h2>
+                            <a href=<?php printf($article->getUrl());?> target="_blank"><?php printf($article->getUrl());?></a>
+                            <div class="card-actions justify-end">
+                                <form method="post" action="delete_article.php">
+                                    <input name="id" type="hidden" value="<?= $article->getId() ?>">
+                                    <input class="btn bg-white hover:bg-priamry" type="submit" value="delete">
+                                </form>
+                                <!-- GET will help display value (speciially getId) in URL -->
+                                <form method="GET" action="update_article.php">
+                                    <input name="id" type="hidden" value="<?= $article->getId() ?>">
+                                    <input class="btn bg-white hover:bg-priamry" type="submit" value="update">
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <br>
                 <?php endforeach; ?>

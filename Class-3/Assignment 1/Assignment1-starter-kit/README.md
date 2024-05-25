@@ -26,7 +26,10 @@ npm run dev
 
 You can also run this using Apache or Nginx.
 
-## hes not pick on return time or arguments so we can change it
+## Instructions
 
-- need ot install node
-- when you do npm run dev and the php -S localhost:3000 then it will work - need ot do two terminals
+- need to install node
+- when you do npm run dev and the php -S localhost:3000 then it will work - need to do two terminals
+
+## Limitations/assumptions
+- For the application i am just assuming we can just see the title and the url. We are only going to be able to delete or update the article. We will not be able to go inside the article to create its own page.
