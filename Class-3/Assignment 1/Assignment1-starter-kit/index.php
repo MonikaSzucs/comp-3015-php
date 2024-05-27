@@ -29,6 +29,7 @@ $articles = $articleRepository->getAllArticles();
                             <h2 class="text-xl font-bold text-secondary mb-4"><?php printf($article->getTitle());?></h2>
                             <a href=<?php printf($article->getUrl());?> target="_blank"><?php printf($article->getUrl());?></a>
                             <div class="card-actions justify-end">
+                                <!-- POST will help run the delete_article.php and not show in the URL but the request body-->
                                 <form method="post" action="delete_article.php">
                                     <input name="id" type="hidden" value="<?= $article->getId() ?>">
                                     <input class="btn bg-white hover:bg-priamry" type="submit" value="delete">

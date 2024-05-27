@@ -8,7 +8,7 @@
 require_once 'UserRepository.php';
 
 $userRepository = new UserRepository;
-$user = $userRepository->getUser('christian_fenn@bcit.ca');
+$user = $userRepository->getUser('christian_fenn@bcit.ca', 'test', 100);
 // if(isset($user)) {
 //     // we know calling methods is safe
 // }

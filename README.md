@@ -47,4 +47,8 @@ phpinfo()
 - show with github link you record
 - can do a unlisted youtube video make it less than 2 minutes 
 
+## Run on local host to see in browser and terminal
+php -S localhost:3000
 
+## to run a file in terminal
+php main.php
