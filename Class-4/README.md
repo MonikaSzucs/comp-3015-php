@@ -67,3 +67,9 @@ HTTP GET requests pass data to the server using query parameters in the URL.
 For example: http://example.com?id=123&school=bcit
 - True
 
+
+## Command
+mysql -u root
+
+show databases;
+create database in_class_example_db
