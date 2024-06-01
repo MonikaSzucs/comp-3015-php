@@ -7,4 +7,5 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Assignment 2</title>
     <link href="/dist/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
