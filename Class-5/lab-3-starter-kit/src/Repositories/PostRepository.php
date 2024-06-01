@@ -25,23 +25,23 @@ class PostRepository extends Repository {
 	}
 
 	/**
-	 * @param string $title
-	 * @param string $body
+	 * @param string $username
+	 * @param string $password
 	 * @return Post|false
 	 *
 	 * This is horrible! Let's exploit the vulnerability and drop the database.
 	 *
 	 * Do not do SQL injection attacks on software that you don't own.
 	 */
-	public function savePost(string $title, string $body): Post|false {
+	public function savePost(string $username, string $password): Post|false {
 		$createdAt = date('Y-m-d H:i:s');
 		// 1. tells us what to execute with database
 		// exec or prepare
 		// send query itself to database first without variable data
 		// prepare will help prevent from SQL injections
-		$statement = $this->pdo->prepare("INSERT INTO posts (created_at, updated_at, body, title) VALUES (?, NULL, ?, ?);");
+		$statement = $this->pdo->prepare("INSERT INTO posts (created_at, updated_at, username, password) VALUES (?, NULL, ?, ?);");
 		// this one provides data to fill database in queries
-		$success = $statement->execute([$createdAt, $body, $title]);
+		$success = $statement->execute([$createdAt, $username, $password]);
 		// teacher wants this prepare and execute keep it like this.
 		if ($success) {
 		//if ($rowsChanged === 1) {
@@ -81,9 +81,8 @@ class PostRepository extends Repository {
 		$sqlStatement = $this->pdo->prepare('SELECT * FROM posts WHERE id=?');
 		$result = $sqlStatement->execute([$id]);
 		if ($result) {
-			$sqlStatement = $this->pdo->prepare('UPDATE posts SET title=?, body=? WHERE id=?');
-			$result = $sqlStatement->execute([$title, $body, $id]);
-			return $result;
+			$resultSet = $sqlStatement->fetch();
+			return new Post($resultSet);
 		}
 		
 		return false;
@@ -95,12 +94,6 @@ class PostRepository extends Repository {
 	 */
 	public function deletePostById(int $id): bool {
 		// TODO
-		$sqlStatement = $this->pdo->prepare('SELECT * FROM posts WHERE id=?');
-		$result = $sqlStatement->execute([$id]);
-		if ($result) {
-			$sqlStatement = $this->pdo->prepare('DELETE FROM posts WHERE id=?');
-			$result = $sqlStatement->execute([$id]);
-		}
-		return $result;
+		return false;
 	}
 }

@@ -7,6 +7,7 @@ use src\Repositories\PostRepository;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$body = $_POST['body'];
 	$postTitle = $_POST['title'];
+
 	$post = (new PostRepository())->savePost($postTitle, $body);
 	if ($post) {
 		header("Location: post.php?id=$post->id");
