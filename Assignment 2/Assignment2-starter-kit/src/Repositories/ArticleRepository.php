@@ -12,8 +12,16 @@ class ArticleRepository extends Repository {
 	 */
 	public function getAllArticles(): array {
 		// TODO
-		$article = new Article;
-		return [];
+		// get stuff from database
+		$sqlStatement = $this->pdo->query("SELECT * FROM articles");
+		$rows = $sqlStatement->fetchAll();
+
+		$articles = [];
+		foreach ($rows as $article) {
+			print_r($article);
+			$articles[] = new Article($article);
+		}
+		return $articles;
 	}
 
 	/**

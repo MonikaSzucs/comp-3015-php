@@ -24,7 +24,7 @@ class Repository {
 		$this->hostname = 'localhost';
 		$this->username = 'root';
 		$this->databaseName = 'article_aggregator_co';
-		$this->databasePassword = '';
+		$this->databasePassword = 'root';
 		$this->charset = 'utf8mb4';
 
 		$dsn = "mysql:host=$this->hostname;dbname=$this->databaseName;charset=$this->charset";
