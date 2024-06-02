@@ -4,6 +4,7 @@ namespace src\Controllers;
 
 use core\Request;
 use PDOException;
+use src\Models\User;
 use src\Repositories\UserRepository;
 
 class RegistrationController extends Controller
@@ -22,9 +23,9 @@ class RegistrationController extends Controller
 		// TODO
 		$name = $_POST['name'];
 		$password = $_POST['password'];
-		//$email = $_POST['email'];
+		$email = $_POST['email'];
+
 		$errors = false;
-		//print_r($request);
 		$passwordGranted = false;
 		$nameGranted = false;
 
@@ -49,20 +50,20 @@ class RegistrationController extends Controller
 		}
 
 		if ($nameGranted && $passwordGranted) {
-			$_SESSION['access_granted'] = true;
-			$_SESSION['email'] = $_POST['email'];
-			header('Location: /login');
+			// save user
+			$passwordHashed = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12,]);
+			$userRepository = new UserRepository();
+			// string $name, string $email, string $passwordDigest
+			$result = $userRepository->saveUser($name, $email, $passwordHashed);
+			if (!$result) {
+				print_r("Could not create new user in the Database.\n");
+				header('Location: /register');
+			} else {
+				$_SESSION['access_granted'] = true;
+				$_SESSION['email'] = $_POST['email'];
+				header('Location: /login');
+			}
 			exit();
 		}
-
-		
-		//print_r("--following is the incoming request:");
-		//print_r($name);
-		//print_r($password);
-		// print_r($email);
-
-		// if (!validatePassword($_POST['password'])) {
-		// 	print_r("Invalid Password: Password must be at least 9 characters long and have one symbol.\n");
-		// }
 	}
 }

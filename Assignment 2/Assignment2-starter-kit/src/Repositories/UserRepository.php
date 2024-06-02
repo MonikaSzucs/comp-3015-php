@@ -50,16 +50,20 @@ class UserRepository extends Repository {
 	 */
 	public function saveUser(string $name, string $email, string $passwordDigest): User|false {
 		// TODO
-		// $sqlStatement = $this->pdo->query("SELECT * from user");
-		// $rows = $sqlStatement->fetchAll();
-		// $users = [];
-		// foreach ($rows as $user) {
-		// 	if($user->$email == $email) {
-		// 		$users[] = new User($user);
-		// 		return $users;
-		// 	}
-		// };
-		// return false;
+		$sqlStatement = $this->pdo->prepare("INSERT INTO users (password_digest, email, name, description) VALUES (?, ?, ?, '')");
+		if ($sqlStatement->execute([$passwordDigest, $email, $name])) {
+			$id = $this->pdo->lastInsertId();
+
+			// create a new user
+			$user = new User([
+				'id' => $id,
+				'name' => $name,
+				'email' => $email,
+				'password_digest' => $passwordDigest
+			]);
+
+			return $user;
+		}
 		return false;
 	}
 
