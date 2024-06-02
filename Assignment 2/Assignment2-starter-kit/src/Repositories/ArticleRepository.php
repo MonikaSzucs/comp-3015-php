@@ -48,7 +48,7 @@ class ArticleRepository extends Repository {
 		//$sqlStatement = $this->pdo->prepare("INSERT INTO articles (title, url, created_at, updated_at, author_id) VALUES (?, ?, ?, null, ?)");
 		
 		$sqlStatement = $this->pdo->query("SELECT * FROM articles");
-		$rows = $sqlStatement->fetchAll();
+		$rows = $sqlStatement->fetchAll(); // fetches all rows of query in a tuple
 		print_r($rows);
 		
 		$articles = [];

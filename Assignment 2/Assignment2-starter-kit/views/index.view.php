@@ -20,13 +20,8 @@ $articles = $articleRepository->getAllArticles();
             <div class="sm:rounded-md">
                 <ul role="list" class="divide-y divide-gray-200">
                     <?php foreach ($articles as $article): ?>
-                        <li class="">
+                        <li class="bg-blue-50">
                         <div class="inline-block">
-                        <!-- <li>
-                            <h2><?= htmlspecialchars($article->title) ?></h2>
-                            <p><?= htmlspecialchars($article->url) ?></p>
-                        </li> -->
-                        
                             <a href="<?php echo "post.php?id=$post->id" ?>" class="block hover:bg-gray-50 p-0.5 rounded inline-block">
                                 <div class="flex items-center px-4 py-4 sm:px-6">
                                     <div class=" flex-1 sm:flex sm:items-center sm:justify-between">

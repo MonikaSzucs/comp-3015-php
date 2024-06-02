@@ -16,8 +16,8 @@ use src\Repositories\UserRepository;
     <li class="flex-none">
         <ul class="menu menu-horizontal px-1">
             <!-- TODO create the conditionally rendered buttons here -->
-            <a href=""><button>Sign In</button></a>
-            <button>Register</button>
+            <a href="/login"><button>Sign In</button></a>
+            <a href="/register"><button>Register</button></a>
         </ul>
     </li>
 </div>

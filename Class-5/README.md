@@ -3,7 +3,7 @@
 ## Command ot run sql commands
 mysql -u root
 
-mysql -u root
+mysql -u root -p
 
 show databases;
 create database in_class_example_db

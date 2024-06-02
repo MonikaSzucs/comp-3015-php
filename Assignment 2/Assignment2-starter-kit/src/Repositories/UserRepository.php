@@ -12,6 +12,15 @@ class UserRepository extends Repository {
 	 */
 	public function getUserById(string $id): User|false {
 		// TODO
+		$sqlStatement = $this->pdo->query("SELECT * FROM user");
+		$rows = $sqlStatement->fetchAll();
+		$users = [];
+		foreach ($rows as $user) {
+			if ($user->$id == $id) {
+				$users[] = new User($user);
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -21,6 +30,15 @@ class UserRepository extends Repository {
 	 */
 	public function getUserByEmail(string $email): User|false {
 		// TODO
+		$sqlStatement = $this->pdo->query("SELECT * FROM user");
+		$rows = $sqlStatement->fetchAll();
+		$users = [];
+		foreach ($rows as $user) {
+			if($user->$email == $email) {
+				$users[] = new User($user);
+				return $users;
+			}
+		}
 		return false;
 	}
 
@@ -32,6 +50,16 @@ class UserRepository extends Repository {
 	 */
 	public function saveUser(string $name, string $email, string $passwordDigest): User|false {
 		// TODO
+		// $sqlStatement = $this->pdo->query("SELECT * from user");
+		// $rows = $sqlStatement->fetchAll();
+		// $users = [];
+		// foreach ($rows as $user) {
+		// 	if($user->$email == $email) {
+		// 		$users[] = new User($user);
+		// 		return $users;
+		// 	}
+		// };
+		// return false;
 		return false;
 	}
 
@@ -43,6 +71,7 @@ class UserRepository extends Repository {
 	 */
 	public function updateUser(int $id, string $name, ?string $profilePicture = null): bool {
 		// TODO 
+
 		return false;
 	}
 

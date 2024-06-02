@@ -1,4 +1,7 @@
 <?php require_once 'header.php' ?>
+<?php 
+    unset($_SESSION['password']);
+?>
 
 <body>
     <div>
@@ -11,6 +14,12 @@
                         <form class="space-y-6" action="/register" method="POST">
 
                             <div>
+                                <?php
+                                    if (isset($_SESSION['name_error'])) {
+                                        echo $_SESSION['name_error'];
+                                        unset($_SESSION['name_error']);
+                                    }
+                                ?>
                                 <label for="name" class="text-white"> Name </label>
                                 <div class="mt-1">
                                     <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required class="input input-bordered w-full max-w-xs">
@@ -24,10 +33,18 @@
                                 </div>
                             </div>
 
-                            <div>
+                            <div class="text-red-500">
+                                <span>
+                                    <?php
+                                        if (isset($_SESSION['password_error'])) {
+                                            echo $_SESSION['password_error'];
+                                            unset($_SESSION['password_error']);
+                                        }
+                                    ?>
+                                </span>
                                 <label for="password" class="text-white"> Password </label>
                                 <div class="mt-1">
-                                    <input id="password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required class="input input-bordered w-full max-w-xs">
+                                    <input id="password" value="<?php echo isset($_SESSION['password']) ? $_SESSION['password'] : '' ?>" name="password" type="password" placeholder="Your password" autocomplete="current-password" required class="input input-bordered w-full max-w-xs" pattern='/(?=.*[@_!#$%^&*()<>?\/\\|}{~:]).{9,}/'>
                                 </div>
                             </div>
 
