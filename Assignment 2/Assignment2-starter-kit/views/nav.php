@@ -16,8 +16,25 @@ use src\Repositories\UserRepository;
     <li class="flex-none">
         <ul class="menu menu-horizontal px-1">
             <!-- TODO create the conditionally rendered buttons here -->
-            <a href="/login"><button>Sign In</button></a>
-            <a href="/register"><button>Register</button></a>
+            <span>
+                <?php
+                    // print_r($_SESSION);
+                    print_r(userIsAunthenticated());
+                    if (userIsAunthenticated()) {
+                        $userRepository = new UserRepository();
+		                $user = $userRepository->getUserById($_SESSION['user_id']);
+                        print_r($user->email);
+                        echo '<a href="/logout"><button>Logout</button></a>';
+                        // Show the Logout button
+                    } else {
+                        // show login and register buttons
+                        echo '<a href="/login"><button>Sign In</button></a>';
+                        echo '<a href="/register"><button>Register</button></a>';
+                    }
+                    ?>
+            </span>
+            
+            
         </ul>
     </li>
 </div>

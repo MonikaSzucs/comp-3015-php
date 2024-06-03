@@ -11,9 +11,17 @@
                         <form class="space-y-6" action="/login" method="POST">
 
                             <div>
+                                <div class="text-error">
+                                    <?php
+                                        if (isset($_SESSION['email_error'])) {
+                                            echo $_SESSION['email_error'];
+                                            unset($_SESSION['email_error']);
+                                        }
+                                    ?>
+                                </div>
                                 <label for="email" class="text-white"> Email address </label>
                                 <div class="mt-1">
-                                    <input id="email" name="email" type="email" placeholder="Your email" autocomplete="email" required class="input input-bordered w-full max-w-xs">
+                                    <input id="email" name="email" value="<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '' ?>" type="email" placeholder="Your email" autocomplete="email" required class="input input-bordered w-full max-w-xs">
                                 </div>
                             </div>
 

@@ -12,13 +12,11 @@ class UserRepository extends Repository {
 	 */
 	public function getUserById(string $id): User|false {
 		// TODO
-		$sqlStatement = $this->pdo->query("SELECT * FROM user");
+		$sqlStatement = $this->pdo->query("SELECT * FROM users");
 		$rows = $sqlStatement->fetchAll();
-		$users = [];
 		foreach ($rows as $user) {
-			if ($user->$id == $id) {
-				$users[] = new User($user);
-				return true;
+			if ($user['id'] == $id) {
+				return new User($user);
 			}
 		}
 		return false;
@@ -30,13 +28,17 @@ class UserRepository extends Repository {
 	 */
 	public function getUserByEmail(string $email): User|false {
 		// TODO
-		$sqlStatement = $this->pdo->query("SELECT * FROM user");
+		$sqlStatement = $this->pdo->query("SELECT * FROM users");
 		$rows = $sqlStatement->fetchAll();
 		$users = [];
 		foreach ($rows as $user) {
-			if($user->$email == $email) {
-				$users[] = new User($user);
-				return $users;
+			
+			if($user['email'] == $email) {
+				print_r("Printing user email:" . $user['email']);
+				print_r("Printing user password:" . $user['password_digest']);
+				return new User($user);
+				// $users[] = new User($user);
+				// return $users[0];
 			}
 		}
 		return false;

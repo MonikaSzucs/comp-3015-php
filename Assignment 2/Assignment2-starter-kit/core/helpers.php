@@ -5,5 +5,16 @@ function image(string $filename): string {
 }
 
 function validatePassword(string $password): bool {
-	return strlen($password) > 8 && preg_match('/^(?=.*[@_!#$%^&*()<>?\/\\|}{~:]).{9,}$/', $password);
+	return strlen($password) > 8;
+	// && preg_match('/^(?=.*[@_!#$%^&*()<>?\/\\|}{~:]).{9,}$/', $password);
+}
+
+function userIsAunthenticated(): bool {
+	if ($_SESSION['user_id']) {
+		print_r("USER ID IS INSIDE SESSION: " . $_SESSION['user_id']);
+		return true;
+	} else {
+		print_r("USER ID IS ** NOT ** INSIDE SESSION: " . $_SESSION['user_id']);
+		return false;
+	}
 }
