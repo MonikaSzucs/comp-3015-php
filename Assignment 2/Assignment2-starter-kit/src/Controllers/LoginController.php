@@ -12,9 +12,9 @@ class LoginController extends Controller
 	 * Show the login page.
 	 * @return void
 	 */
-	public function index(): void
+	public function index(): void // render a view file
 	{
-		$this->render('login');
+		$this->render('login'); // takes string of login where it will look at views directory then find the login.view.php
 	}
 
 	/**
@@ -25,12 +25,13 @@ class LoginController extends Controller
 	public function login(Request $request): void
 	{
 		// TODO
-		print_r("LOGIN WAS CALLED!");
+		echo "LOGIN WAS CALLED!" . PHP_EOL;
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
 		$errors = false;
-
+		
+		//echo "LOGIN WAS CALLED!" . PHP_EOL;
 		print_r($email);
 		print_r($password);
 
@@ -44,7 +45,8 @@ class LoginController extends Controller
 			$errors = true;
 		} else if(password_verify($password, $user->password_digest)) { // if user does exist then do this
 			// set a global variable saying we're logged in
-			$_SESSION['user_id'] = $user->id;
+			//$_SESSION['user_id'] = $user->id;
+			$this->render('index', ['user_id' => $user->id]);
 			header('Location: /');
 			exit();
 		} else {	// if user supplied the wrong password

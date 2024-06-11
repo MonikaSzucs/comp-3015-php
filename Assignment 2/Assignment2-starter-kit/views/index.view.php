@@ -15,7 +15,7 @@ $articles = $articleRepository->getAllArticles();
 
         <h1 class="text-xl text-center font-semibold text-indigo-500 mt-10 mb-10 title">Articles</h1>
 
-        <h6 class="text-center"><?= count($articles) === 0 ? "No articles yet :(" : "here"; ?></span>
+        <h6 class="text-center"><?= count($articles) === 0 ? "No articles yet :(" : "here"; ?></h6>
 
             <div class="sm:rounded-md">
                 <ul role="list" class="divide-y divide-gray-200">

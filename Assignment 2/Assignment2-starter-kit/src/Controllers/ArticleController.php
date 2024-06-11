@@ -1,11 +1,16 @@
 <?php
 
-namespace src\Controllers;
+namespace src\Controllers; // benefit is use 3rd part code that has the same class name
+// class name: Client
+// third party dependency: might be Client
+
 
 use core\Request;
 use src\Repositories\ArticleRepository;
 use src\Repositories\UserRepository;
 use src\Models\Article;
+
+//src\Controllers\ArticleController -> FQCN
 class ArticleController extends Controller
 {
 

@@ -13,7 +13,7 @@ npm i
 ```
 composer install
 ```
-
+// don't need require statements everywhere with this
 If you need to re-generate the autoload files, you can run:
 ```
 composer dump-autoload

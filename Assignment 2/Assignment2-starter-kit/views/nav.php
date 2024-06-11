@@ -17,7 +17,7 @@ use src\Repositories\UserRepository;
         <ul class="menu menu-horizontal px-1">
             <!-- TODO create the conditionally rendered buttons here -->
             <span>
-                <?php
+                <?= isset($user) && isset($user->username) ? '<a href="/logout"><button>Logout</button></a>' : '<a href="/login"><button>Sign In</button></a> <a href="/register"><button>Register</button></a>' ?>                <!-- <?php
                     // print_r($_SESSION);
                     print_r(userIsAunthenticated());
                     if (userIsAunthenticated()) {
@@ -31,7 +31,7 @@ use src\Repositories\UserRepository;
                         echo '<a href="/login"><button>Sign In</button></a>';
                         echo '<a href="/register"><button>Register</button></a>';
                     }
-                    ?>
+                    ?> -->
             </span>
             
             
