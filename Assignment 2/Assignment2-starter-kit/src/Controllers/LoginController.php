@@ -45,7 +45,7 @@ class LoginController extends Controller
 			$errors = true;
 		} else if(password_verify($password, $user->password_digest)) { // if user does exist then do this
 			// set a global variable saying we're logged in
-			//$_SESSION['user_id'] = $user->id;
+			$_SESSION['user_id'] = $user->id; // keeps user logged in
 			$this->render('index', ['user_id' => $user->id]);
 			header('Location: /');
 			exit();

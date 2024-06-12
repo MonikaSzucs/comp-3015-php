@@ -26,3 +26,5 @@ Router::post('/logout', [LogoutController::class, 'logout']);
 
 // TODO: set up routes for all the article and settings functions
 Router::get('/about', [AboutHandleController::class, 'index']);
+
+// Router::get('/update', [])

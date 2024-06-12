@@ -13,10 +13,22 @@ use src\Repositories\UserRepository;
     <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl" href="/">COMP 3015 News</a>
     </div>
+
+    
+
+    <?php if(isset($_SESSION['user_id'])): ?>
+        <img src="<?php echo image('default.jpg')?>" alt="" width="40" style="border-radius: 25px;">
+        <div>Logged in</div>
+        <form action="/logout" method="post">
+            <input type="submit" value="logout">
+        </form>
+    <?php endif ?>
+
     <li class="flex-none">
         <ul class="menu menu-horizontal px-1">
             <!-- TODO create the conditionally rendered buttons here -->
             <span>
+                <?php if(isset($_SESSION['user_id'])) ?>
                 <?= isset($user) && isset($user->username) ? '<a href="/logout"><button>Logout</button></a>' : '<a href="/login"><button>Sign In</button></a> <a href="/register"><button>Register</button></a>' ?>                <!-- <?php
                     // print_r($_SESSION);
                     print_r(userIsAunthenticated());
