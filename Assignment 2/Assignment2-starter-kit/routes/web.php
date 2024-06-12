@@ -8,6 +8,7 @@ use src\Controllers\LogoutController;
 use src\Controllers\RegistrationController;
 use src\Controllers\SettingsController;
 use src\Controllers\AboutController as AboutHandleController; // this is equavalent to just not including the as as long as its the same class naem at the end
+use src\Controllers\UpdateController;
 
 Router::get('/', [ArticleController::class, 'index']); // the root/index page
 
@@ -23,8 +24,11 @@ Router::post('/register', [RegistrationController::class, 'register']); // proce
 Router::post('/logout', [LogoutController::class, 'logout']);
 
 // Article related
+Router::post('/update', [ArticleController::class, 'edit']);
+Router::post('/update_article', [ArticleController::class, 'update']);
 
 // TODO: set up routes for all the article and settings functions
 Router::get('/about', [AboutHandleController::class, 'index']);
 
-// Router::get('/update', [])
+Router::post('/settings', [SettingsController::class, 'index']);
+Router::post('/settings/save', [SettingsController::class, 'update']);

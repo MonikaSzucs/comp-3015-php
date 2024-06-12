@@ -77,8 +77,8 @@ class UserRepository extends Repository {
 	 */
 	public function updateUser(int $id, string $name, ?string $profilePicture = null): bool {
 		// TODO 
-
-		return false;
+		$sqlStatement = $this->pdo->prepare("UPDATE users SET name=?, profile_picture=? WHERE id=?");
+		return $sqlStatement->execute([$name, $profilePicture, $id]);
 	}
 
 }

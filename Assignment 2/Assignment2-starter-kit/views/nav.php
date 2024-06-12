@@ -2,6 +2,17 @@
 
 use src\Repositories\UserRepository;
 
+$image_dir_path = "../public/images/";
+
+$currentUser = (new UserRepository())->getUserById($_SESSION['user_id']);
+$currentImage = file_exists($image_dir_path . $_SESSION['user_id'] . ".jpg");
+
+if ($currentImage) {
+    $currentImage = $_SESSION['user_id'] . ".jpg";
+} else {
+    $currentImage = "default.jpg";
+}
+
 // TODO: get the authenticated user if there is one, and conditonally render the appropriate buttons.
 // 
 // If the user is authenticated: show the new article button and logout button
@@ -12,39 +23,35 @@ use src\Repositories\UserRepository;
 <div class="navbar bg-indigo-500 text-primary-content">
     <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl" href="/">COMP 3015 News</a>
+        <a href="/">All Articles</a>
+        <a href="/">New Article</a>
     </div>
-
-    
-
-    <?php if(isset($_SESSION['user_id'])): ?>
-        <img src="<?php echo image('default.jpg')?>" alt="" width="40" style="border-radius: 25px;">
-        <div>Logged in</div>
-        <form action="/logout" method="post">
-            <input type="submit" value="logout">
-        </form>
-    <?php endif ?>
 
     <li class="flex-none">
         <ul class="menu menu-horizontal px-1">
             <!-- TODO create the conditionally rendered buttons here -->
-            <span>
-                <?php if(isset($_SESSION['user_id'])) ?>
-                <?= isset($user) && isset($user->username) ? '<a href="/logout"><button>Logout</button></a>' : '<a href="/login"><button>Sign In</button></a> <a href="/register"><button>Register</button></a>' ?>                <!-- <?php
-                    // print_r($_SESSION);
-                    print_r(userIsAunthenticated());
-                    if (userIsAunthenticated()) {
-                        $userRepository = new UserRepository();
-		                $user = $userRepository->getUserById($_SESSION['user_id']);
-                        print_r($user->email);
-                        echo '<a href="/logout"><button>Logout</button></a>';
-                        // Show the Logout button
-                    } else {
-                        // show login and register buttons
-                        echo '<a href="/login"><button>Sign In</button></a>';
-                        echo '<a href="/register"><button>Register</button></a>';
-                    }
-                    ?> -->
-            </span>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <form action="/settings" method="POST">
+                    <button type="submit">
+                        <img src="<?php echo image($currentImage)?>" alt="" width="40" style="border-radius: 25px;"">
+                    </button>
+                </form>
+                
+                <?php
+                    $current_user = (new UserRepository())->getUserById($_SESSION['user_id']);
+                    echo $current_user->name;
+                ?>
+                <form action="/logout" method="post">
+                    <input type="submit" value="logout">
+                </form>
+            <?php else: ?>
+                <?php
+                echo '<a href="/login"><button>Sign In</button></a>';
+                echo '<a href="/register"><button>Register</button></a>';
+            ?>
+            <?php endif; ?>
+            
+            
             
             
         </ul>

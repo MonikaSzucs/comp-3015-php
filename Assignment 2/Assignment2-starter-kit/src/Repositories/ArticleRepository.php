@@ -32,9 +32,10 @@ class ArticleRepository extends Repository {
 	public function saveArticle(string $title, string $url, string $authorId): Article|false {
 		// TODO
 		$sqlStatement = $this->pdo->prepare("INSERT INTO articles (title, url, created_at, updated_at, author_id)
-											VALUES (?, ?, ?, NULL, ?)");
+											VALUES (?, ?, ?, ?, ?)");
 		$created_at = date('Y-m-d H:i:s');
-		$result = $sqlStatement->execute([$title, $url, $created_at, $authorId]);
+		$updated_at = $created_at; // updated at time is same as the creation time
+		$result = $sqlStatement->execute([$title, $url, $created_at, $updated_at, $authorId]);
 		
 		return $result;
 	}
@@ -49,14 +50,21 @@ class ArticleRepository extends Repository {
 		
 		$sqlStatement = $this->pdo->query("SELECT * FROM articles");
 		$rows = $sqlStatement->fetchAll(); // fetches all rows of query in a tuple
-		print_r($rows);
 		
 		$articles = [];
 		foreach ($rows as $article) {
-			if($article->$id == $id) {
-				$articles[] = new Article($article);
-				return true;
+			$current_article = new Article($article);
+
+			if ($current_article->id == $id) {
+				return $current_article;
 			}
+
+			// if($article->$id == $id) {
+			// 	print_r("IDs ARE TRUE!!!!");
+			// 	return new Article($article);
+			// 	// $articles[] = new Article($article);
+			// 	// return true;
+			// }
 		}
 		return false;
 	}
@@ -69,6 +77,7 @@ class ArticleRepository extends Repository {
 	 */
 	public function updateArticle(int $id, string $title, string $url): bool {
 		// TODO
+		print_r("Got the following values to update: " . $id . " " . $title . " " . $url . " |||| ");
 		$sqlStatement = $this->pdo->prepare("SELECT * FROM articles WHERE id=?");
 		$result = $sqlStatement->execute([$id]);
 		

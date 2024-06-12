@@ -46,6 +46,9 @@ class ArticleController extends Controller
 	public function edit(Request $request): void
 	{
 		// TODO
+		$this->render('update_article', [
+			'user' => null
+		]);
 	}
 
 	/**
@@ -56,6 +59,12 @@ class ArticleController extends Controller
 	public function update(Request $request): void
 	{
 		// TODO
+		// update the database here
+		$article_repository = new ArticleRepository();
+		$article_repository->updateArticle($_POST['id'], $_POST['new_title'], $_POST['new_url']);
+		
+		// redirect to the main page
+		header("Location: /");
 	}
 
 	/**
