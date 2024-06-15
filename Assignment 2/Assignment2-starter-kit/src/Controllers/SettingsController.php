@@ -65,24 +65,5 @@ class SettingsController extends Controller
 		}
 		header("Location: /");
 
-
-
-		// if (isset($_FILES['profile_picture'])) {
-		// 	print_r("FILE UPLOADED SUCCESSFULLY");
-		// 	print_r($_FILES['profile_picture']['tmp_name']);
-		// 	print_r($_FILES['profile_picture']['name']);
-		// 	print_r(basename($_FILES['profile_picture']['name']));
-		// } else {
-		// 	print_r("something went wrong!!!");
-		// }
-
-
-		// $result = (new UserRepository())->updateUser($_SESSION['user_id'], $_POST['name'], $_POST['profile_picture']);
-		// if (!$result) {
-		// 	echo "<script>alert(User could not be updated, please try again later.);</script>";
-		// }
-
-		// redirect to main
-		// header("Location: /");
 	}
 }

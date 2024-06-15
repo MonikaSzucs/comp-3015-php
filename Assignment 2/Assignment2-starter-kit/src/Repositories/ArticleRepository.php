@@ -77,7 +77,6 @@ class ArticleRepository extends Repository {
 	 */
 	public function updateArticle(int $id, string $title, string $url): bool {
 		// TODO
-		print_r("Got the following values to update: " . $id . " " . $title . " " . $url . " |||| ");
 		$sqlStatement = $this->pdo->prepare("SELECT * FROM articles WHERE id=?");
 		$result = $sqlStatement->execute([$id]);
 		
