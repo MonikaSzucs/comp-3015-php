@@ -31,13 +31,26 @@ class ArticleRepository extends Repository {
 	 */
 	public function saveArticle(string $title, string $url, string $authorId): Article|false {
 		// TODO
+		if ($title == null || $title == '' || $url == null || $url == '') {
+			return false;
+		}
+
 		$sqlStatement = $this->pdo->prepare("INSERT INTO articles (title, url, created_at, updated_at, author_id)
 											VALUES (?, ?, ?, ?, ?)");
 		$created_at = date('Y-m-d H:i:s');
 		$updated_at = $created_at; // updated at time is same as the creation time
 		$result = $sqlStatement->execute([$title, $url, $created_at, $updated_at, $authorId]);
-		
-		return $result;
+
+		if ($result) {
+			return new Article([
+				'id' => $this->pdo->lastInsertId(),
+				'title' => $title,
+				'url' => $url, 
+				'author_id' => $authorId
+			]);
+		} else {
+			return false;
+		}
 	}
 
 	/**

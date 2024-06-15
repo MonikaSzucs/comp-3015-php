@@ -31,11 +31,25 @@ class ArticleController extends Controller
 	public function create(): void
 	{
 		// TODO
+		$this->render('new_article', [
+			'user' => null
+		]);
 	}
-
 	public function store(Request $request)
 	{
 		// TODO
+		$article_repository = new ArticleRepository();
+
+		$title = $_POST['title'];
+		$link = $_POST['link'];
+
+		$newArticle = $article_repository->saveArticle($title, $link, $_SESSION['user_id']);
+
+		if (!$newArticle) {
+			echo "<script type='text/javascript'>alert(Article not setup properly, please try again later.);</script>";
+		} else {
+			header('Location: /');	
+		} 
 	}
 
 	/**
@@ -75,5 +89,13 @@ class ArticleController extends Controller
 	public function delete(Request $request): void
 	{
 		// TODO
+		$article_repository = new ArticleRepository();
+		$articleRemoved = $article_repository->deleteArticleById($_POST['delete_article']);
+
+		if (!$articleRemoved) {
+			echo "<script type='text/javascript'>alert(Cannot remove article.);</script>";
+		} else {
+			header("Location: /");
+		}
 	}
 }

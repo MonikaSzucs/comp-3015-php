@@ -4,7 +4,6 @@ use src\Repositories\UserRepository;
 
 $image_dir_path = "../public/images/";
 
-$currentUser = (new UserRepository())->getUserById($_SESSION['user_id']);
 $currentImage = file_exists($image_dir_path . $_SESSION['user_id'] . ".jpg");
 
 if ($currentImage) {
@@ -24,7 +23,9 @@ if ($currentImage) {
     <div class="flex-1">
         <a class="btn btn-ghost normal-case text-xl" href="/">COMP 3015 News</a>
         <a href="/">All Articles</a>
-        <a href="/">New Article</a>
+        <?php if(isset($_SESSION['user_id'])): ?>
+            <a href="/new_article">New Article</a>
+        <?php endif; ?>
     </div>
 
     <li class="flex-none">

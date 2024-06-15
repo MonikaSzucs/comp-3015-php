@@ -6,7 +6,7 @@
 
     <div class="grid grid-cols-12 mt-20">
 
-        <form class="space-y-6 col-start-4 col-span-6" action="/articles/store" method="POST">
+        <form class="space-y-6 col-start-4 col-span-6" action="/new_article/store" method="POST">
             <!-- TODO: add inputs for article creation -->
 
             <div class="pt-5">
@@ -15,7 +15,7 @@
 						<label class="text-xl font-bold text-secondary mb-4" for="title">Title</label>
 					</div>
 					<div>
-						<input id="title" type="text" name="title" placeholder="Title" class="bg-white text-black border-2 p-2">
+						<input id="title" type="text" name="title" placeholder="Title" class="bg-white text-black border-2 p-2" required>
 					</div>
 				</div>
 				<div class="pt-5">
@@ -24,7 +24,7 @@
 						<label class="text-xl font-bold text-secondary mb-4" for="link">Link</label>
 					</div>
 					<div>
-						<input id="link" type="text" name="link" placeholder="Link" class="bg-white text-black border-2 p-2">
+						<input id="link" type="url" name="link" placeholder="Link" class="bg-white text-black border-2 p-2" required>
 					</div>
 				</div>
 				<div class="mt-2">

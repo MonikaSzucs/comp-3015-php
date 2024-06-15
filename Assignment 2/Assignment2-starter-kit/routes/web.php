@@ -27,6 +27,11 @@ Router::post('/logout', [LogoutController::class, 'logout']);
 Router::post('/update', [ArticleController::class, 'edit']);
 Router::post('/update_article', [ArticleController::class, 'update']);
 
+Router::get('/new_article', [ArticleController::class, 'create']); // its not a form its just a link so we do a get
+Router::post('/new_article/store', [ArticleController::class, 'store']);
+
+Router::post('/delete', [ArticleController::class, 'delete']);
+
 // TODO: set up routes for all the article and settings functions
 Router::get('/about', [AboutHandleController::class, 'index']);
 
