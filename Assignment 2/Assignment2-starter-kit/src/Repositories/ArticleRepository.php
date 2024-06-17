@@ -24,7 +24,7 @@ class ArticleRepository extends Repository {
 	}
 
 	/**
-	 * @param string $title
+ * @param string $title
 	 * @param string $url
 	 * @param string $authorId
 	 * @return Article|false

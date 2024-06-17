@@ -34,7 +34,7 @@ if ($currentImage) {
             <?php if(isset($_SESSION['user_id'])): ?>
                 <form action="/settings" method="POST">
                     <button type="submit">
-                        <img src="<?php echo image($currentImage)?>" alt="" width="40" style="border-radius: 25px;"">
+                        <img src="<?php echo image($currentImage)?>" alt="" width="40" style="border-radius: 25px;">
                     </button>
                 </form>
                 
@@ -47,14 +47,10 @@ if ($currentImage) {
                 </form>
             <?php else: ?>
                 <?php
-                echo '<a href="/login"><button>Sign In</button></a>';
+                echo '<a href="/login" style="padding-right: 10px;"><button>Sign In</button></a>';
                 echo '<a href="/register"><button>Register</button></a>';
             ?>
             <?php endif; ?>
-            
-            
-            
-            
         </ul>
     </li>
 </div>

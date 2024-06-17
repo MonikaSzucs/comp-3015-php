@@ -48,8 +48,8 @@ class ArticleController extends Controller
 		if (!$newArticle) {
 			echo "<script type='text/javascript'>alert(Article not setup properly, please try again later.);</script>";
 		} else {
-			header('Location: /');	
-		} 
+			header('Location: /');
+		}
 	}
 
 	/**
@@ -76,7 +76,7 @@ class ArticleController extends Controller
 		// update the database here
 		$article_repository = new ArticleRepository();
 		$article_repository->updateArticle($_POST['id'], $_POST['new_title'], $_POST['new_url']);
-		
+
 		// redirect to the main page
 		header("Location: /");
 	}
