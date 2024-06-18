@@ -58,9 +58,7 @@ class ArticleRepository extends Repository {
 	 * @return Article|false Article object if it was found, false otherwise
 	 */
 	public function getArticleById(int $id): Article|false {
-		// TODO
-		//$sqlStatement = $this->pdo->prepare("INSERT INTO articles (title, url, created_at, updated_at, author_id) VALUES (?, ?, ?, null, ?)");
-		
+		// TODO		
 		$sqlStatement = $this->pdo->query("SELECT * FROM articles");
 		$rows = $sqlStatement->fetchAll(); // fetches all rows of query in a tuple
 		
@@ -71,13 +69,6 @@ class ArticleRepository extends Repository {
 			if ($current_article->id == $id) {
 				return $current_article;
 			}
-
-			// if($article->$id == $id) {
-			// 	print_r("IDs ARE TRUE!!!!");
-			// 	return new Article($article);
-			// 	// $articles[] = new Article($article);
-			// 	// return true;
-			// }
 		}
 		return false;
 	}
@@ -129,26 +120,12 @@ class ArticleRepository extends Repository {
 		
 		if ($rows !== false) {
 			$articles = new Article($rows);
-			// foreach ($rows as $article) {
-			// 	$articles[] = new Article($article);
-			// }
-			// $author_id = $articles[0]->author_id;
 
 			// get user info
 			$sqlStatement = $this->pdo->query("SELECT * FROM users WHERE author_id=$articles->author_id");
 			$rows = $sqlStatement->fetch();
 
 			return ($rows !== false) ? new User($rows) : false;
-
-			// if (count($rows) == 1) {
-			// 	$users = [];
-			// 	foreach ($rows as $user) {
-			// 		$users[] = $user;
-			// 	}
-			// 	return $users[0];
-			// } else {
-			// 	return false;
-			// }
 		}
 
 		return false;

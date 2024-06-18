@@ -9,10 +9,6 @@ class LogoutController extends Controller
 	{
 		// TODO
 		session_destroy(); // destroy session
-		// header('Location: /login'); // this will send them to the login page
-		// exit*
-		// remove cookie set
-		//setcookie('');
 		$this->redirect('/login');
 	}
 }

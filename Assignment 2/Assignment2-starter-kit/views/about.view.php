@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Here</title>
+        <title>Articles</title>
     </head>
     <body>
         About page here!

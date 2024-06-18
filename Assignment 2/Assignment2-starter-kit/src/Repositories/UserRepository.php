@@ -34,11 +34,9 @@ class UserRepository extends Repository {
 		foreach ($rows as $user) {
 			
 			if($user['email'] == $email) {
-				print_r("Printing user email:" . $user['email']);
-				print_r("Printing user password:" . $user['password_digest']);
+				//print_r("Printing user email:" . $user['email']);
+				//print_r("Printing user password:" . $user['password_digest']);
 				return new User($user);
-				// $users[] = new User($user);
-				// return $users[0];
 			}
 		}
 		return false;

@@ -15,7 +15,7 @@
 						<label class="text-xl font-bold text-secondary mb-4" for="title">Title</label>
 					</div>
 					<div>
-						<input id="title" type="text" name="title" placeholder="Title" class="bg-white text-black border-2 p-2" required>
+						<input id="title" type="text" name="title" placeholder="Title" style="width: 100%" class="bg-white text-black border-2 p-2" required>
 					</div>
 				</div>
 				<div class="pt-5">
@@ -24,7 +24,7 @@
 						<label class="text-xl font-bold text-secondary mb-4" for="link">Link</label>
 					</div>
 					<div>
-						<input id="link" type="url" name="link" placeholder="Link" class="bg-white text-black border-2 p-2" required>
+						<input id="link" type="url" name="link" placeholder="Link" style="width: 100%" class="bg-white text-black border-2 p-2" required>
 					</div>
 				</div>
 				<div class="mt-2">

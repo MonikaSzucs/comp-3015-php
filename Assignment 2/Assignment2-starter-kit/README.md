@@ -1,5 +1,9 @@
 # Assignment 2 Solution
 
+## User logins
+kate@test.com
+abcdef*123
+
 ## Setup
 
 Ensure you create the database schema with the `database/schema.sql` file. The credentials for the database can be added within the Repository.php file.

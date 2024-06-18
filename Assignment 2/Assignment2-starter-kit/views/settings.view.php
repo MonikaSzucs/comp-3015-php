@@ -35,7 +35,7 @@ print_r($image_dir_path . $_SESSION['user_id'] . ".jpg");
         </div>
 
         <label for="photo" class="text-white"> photo </label>
-        <img src="<?php echo image($currentImage)?>" alt="" width="40" style="border-radius: 25px;"">
+        <img src="<?php echo image($currentImage)?>" alt="" width="40" style="border-radius: 25px;">
 
         <input type="file" name="profile_picture" accept=".jpg">
 

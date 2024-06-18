@@ -25,15 +25,15 @@ class LoginController extends Controller
 	public function login(Request $request): void
 	{
 		// TODO
-		echo "LOGIN WAS CALLED!" . PHP_EOL;
+		//echo "LOGIN WAS CALLED!" . PHP_EOL;
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 
 		$errors = false;
 		
 		//echo "LOGIN WAS CALLED!" . PHP_EOL;
-		print_r($email);
-		print_r($password);
+		//print_r($email);
+		//print_r($password);
 
 		$userRepository = new UserRepository();
 		$user = $userRepository->getUserByEmail($email);

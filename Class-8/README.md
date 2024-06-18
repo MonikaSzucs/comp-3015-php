@@ -1,81 +1,79 @@
-# Class 7
-- PHPUnit
-- DotEnv
-- semantic versioning
 
-composer init
-- package name is a ventor
-[cfenn/in-class-example]: 
+c3015.cfenn.com
 
-## Setup
-PS C:\Users\mszuc> cd desktop
-PS C:\Users\mszuc\desktop> mkdir example
+cloud.digitalocean.com
+- can log into a server
+- just like AWS
 
+## private key thats our private key
+ssh root@24.199.80.16 -i ~/.ssh/cfenn.com
 
-    Directory: C:\Users\mszuc\desktop
+public key is on the server
 
+- you will see what kind of server it is then
 
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
-d-----        2024-06-10   6:24 PM                example
+thop
 
+## you can see what is running
+sudo systemctl status nginx
 
-PS C:\Users\mszuc\desktop> cd example
-PS C:\Users\mszuc\desktop\example> composer init 
+cd /stc/nginx/sites-enabled
+- you will see a default file
 
-                                            
-  Welcome to the Composer config generator  
-                                            
+## open the default file
+vi default
 
+## then you will see some code inside
+- we can modify this fiel to enable https for us
 
-This command will guide you through creating your composer.json config.
+cd var/www/html/c3015.cfenn.com
+ls
+sudo certbot renew
 
-Package name (<vendor>/<name>) [mszuc/example]:
-Description []:
-Author [Monika Szucs <monika.szucs.work@gmail.com>, n to skip]:
-Minimum Stability []:
-Package Type (e.g. library, project, metapackage, composer-plugin) []: project
-License []: MIT
+sudo certbot --nginx -d c3015.cfenn.com
 
-Define your dependencies.
-
-Would you like to define your dependencies (require) interactively [yes]? no     
-Would you like to define your dev dependencies (require-dev) interactively [yes]? no
-Add PSR-4 autoload mapping? Maps namespace "Mszuc\Example" to the entered relative path. [src/, n to skip]: 
-
-{
-    "name": "mszuc/example",
-    "type": "project",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Mszuc\\Example\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Monika Szucs",
-            "email": "monika.szucs.work@gmail.com"
-        }
-    ],
-    "require": {}
-}
-
-Do you confirm generation [yes]?
-Generating autoload files
-Generated autoload files
-PSR-4 autoloading configured. Use "namespace Mszuc\Example;" in src/
-Include the Composer autoloader with: require 'vendor/autoload.php';
-PS C:\Users\mszuc\desktop\example> 
+## if we switch it to something that doesn't exist
+sudo certbot --nginx -d c3016.cfenn.com
+- it will fail if we dont have that domain
 
 
-# third party php code to install
+- use the website we have
+sudo certbot --nginx -d c3015.cfenn.com
 
-- we are interacting with package repository
-php packages are hosted like in [packagist.org](packagist.org)
-- search for http client
-guzzlehttp/guzzle
-- there is a link to their github and it will show you how to use it
+what would you like to do?
+- 1 reinstall certificate
+- it will successfuly deploy certificate
+- it will say you successfully enabled https
 
-in termal install:
-composer require guzzlehttp/guzzle
+
+## in zsh/curl do:
+curl -i http://c3015.cfenn.com
+- it will redirect you to https since we made a http request it will automatically redirect
+
+## Review
+1. hat is symmetric key cryptography?
+- caesar cipher
+- encrypt and decrypt functiona dn we use the same secrete key for both
+
+2. what is asymetric key cryptography?
+- key pair
+- public key(encrypted) and private (decryupt) key
+
+3. What does TLS stand for?
+- Transport LAyer Security
+
+4. what is SSL?
+- secure socets layer
+- 
+
+5. what is HTTP data is encrypted when using HTTPS?
+- application layer data - we have stuff liek query paramteres, route parameters, body of http messages, domain name - domain name in application layer is not encrypted
+- when we generate a message to be sent
+
+6. What is a digital certificate used for?
+- used for provide veritfication of public key
+- its improtant because we want to prevent man in the middle attacks
+- provides infromation on who is the owner
+
+7. when using TLS what properties does the secure channel provide?
+- authentication, confidentiality (both parties know message is being sent and no one elese can see it in the middle) and integrity (messages cannot be modified without it being detected)

@@ -24,7 +24,7 @@ if ($currentImage) {
         <a class="btn btn-ghost normal-case text-xl" href="/">COMP 3015 News</a>
         <a href="/">All Articles</a>
         <?php if(isset($_SESSION['user_id'])): ?>
-            <a href="/new_article">New Article</a>
+            <a href="/new_article" class="px-4">New Article</a>
         <?php endif; ?>
     </div>
 
@@ -33,17 +33,19 @@ if ($currentImage) {
             <!-- TODO create the conditionally rendered buttons here -->
             <?php if(isset($_SESSION['user_id'])): ?>
                 <form action="/settings" method="POST">
-                    <button type="submit">
+                    <button type="submit" style="padding-right: 10px;">
                         <img src="<?php echo image($currentImage)?>" alt="" width="40" style="border-radius: 25px;">
                     </button>
                 </form>
                 
                 <?php
                     $current_user = (new UserRepository())->getUserById($_SESSION['user_id']);
+                    echo '<span style="padding-right: 10px; padding-top: 5px;">';
                     echo $current_user->name;
+                    echo '</span>';
                 ?>
                 <form action="/logout" method="post">
-                    <input type="submit" value="logout">
+                    <input type="submit" value="logout" style="padding-top: 5px;">
                 </form>
             <?php else: ?>
                 <?php
