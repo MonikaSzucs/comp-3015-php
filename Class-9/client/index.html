@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Articles</h1>
+    <div id="articles"></div>
+</body>
+</html>
+
+<script>
+    // fetch articles from our web API
+    fetch('http://localhost:8000/api/articles').then((res) => {
+        return res.json()
+    }).then(jsonResponse => {
+        jsonResponse.articles.forEach(article => {
+            document.getElementById('articles').innerHTML += `${article.title}, url: ${article.url}<br/>`
+        })
+    })
+</script>
