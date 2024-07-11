@@ -9,5 +9,5 @@ namespace src\Models;
  * @property int $author_id
  */
 class Article extends Model {
-
+    
 }
