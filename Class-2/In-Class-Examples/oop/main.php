@@ -9,7 +9,6 @@ require_once 'User.php';
 // var_dump($user2);
 
 $users = [
-    // new User   <-- this is an anonymous object - created without being assigned a variable
     new User('Chris'),
     new User('Dave'),
     new User('Sam'),
@@ -29,3 +28,5 @@ file_put_contents('users.json', $encodedUsers);
 
 $result = file_get_contents('users.json');
 var_dump($result);
+
+echo phpinfo();

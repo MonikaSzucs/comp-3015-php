@@ -116,3 +116,159 @@ Hard-coding environment specific data such as hostnames, database credentials, v
 The solution to this is:
 
 Loading environment information into the application using a dependency such as DotEnv. By default the data is loaded from a ".env" file which is not tracked by version control (Git in our case).
+
+# PowerPoint Notes Class 8
+## Symmetric Key Cryptography Intro
+The same secret key is used for encryption and decryption for symmetric key ciphers. In general, this is the interface for symmetric key cryptography functions:
+
+let ciphertext = encrypt(plaintext, secretKey)
+let plaintext = decrypt(ciphertext, secretKey)
+
+Equivalently:
+let plaintext = decrypt(encrypt(secretKey, plaintext), secretKey)
+
+## Famous Cipher: The Caesar Cipher
+- Named after Julius Caesar who used it to secure communications
+- Idea: pick a numeric key such as 3, and use this key to shift plaintext letters to their corresponding ciphertext letters
+- Example: plaintext = “ABC”, with a right shift of 3 becomes “DEF”
+- Decryption is performed by shifting letters to the left
+- “Hello World” of Cryptography
+
+- Caesar Cipher Encryption: Shift right by the key
+- Caesar Cipher Decryption: Shift left by the key
+
+## Casesar Cipher 
+- Today it offers no practical security
+- Easy to break the cipher by examining letter frequencies
+-- Every language has some letters used much more than others. You can use this info to find the encryption key (the value letters are shifted by)
+- Understanding it is the “Hello World” of cryptography
+
+## AES Example
+Advanced Encryption Standard (AES) is the symmetric key cryptography
+algorithm that should be used these days.
+- Do not write your own algorithms for usage in real systems
+-- Use battle-tested industry standard algorithms instead
+- We won’t look into the implementation of it since this is not a cryptography
+course
+- See: AES.zip on D2L
+
+## Asymmetric Key Cryptographic Intro
+`Idea:`
+- A keypair is generated
+- The keypair consists of a public key and a private key
+- For ensuring confidentiality of data in transit, a message is encrypted using the public key can only be decrypted using the corresponding private key
+
+## Securing message sin transit with asymetric key crypto
+After an initial public key exchange (Bob has received Alice’s public key, Alice has received Bob’s public key):
+● Bob writes a message to Alice
+● Bob encrypts the message with Alice’s public key
+● Bob sends the ciphertext to Alice
+● Alice uses her private key to decrypt the ciphertext
+
+## Before we get into TLS
+`Authentication`: verify that a user is who they claim to be.
+- Example: if you know the username + password to a service, you’re granted access based on the idea that only you should know that combination of data.
+`Authorization`: checks to see if a given user is allowed to perform a certain function or access particular data
+- Think clearance levels: classified, secret, top secret, etc.
+
+## Transport Layer Security (TLS)
+- Cryptographic protocol for secure network communications
+- Evolution of Secure Sockets Layer (SSL)
+-- TLS version 1 started as a version of SSL
+-- You’ll still often see references to SSL, and lots of people use it
+interchangeably with TLS (incorrectly)
+- Can be used to secure email, VoIP, various other forms of messaging
+- We are primarily interested in the role it plays in securing HTTP
+
+## TLS: Goals
+See: https://www.rfc-editor.org/rfc/rfc8446#section-1
+In short:
+- `Authentication`: the server side of the channel is always authenticated.
+- `Confidentiality`: data sent over the network after connection establishment is only visible to the communicating endpoints.
+- `Integrity`: data sent over the channel cannot be modified by an attacker without detection.
+
+## HTTPS
+HTTPS is HTTP with TLS
+
+All headers (e.g. Cookie, Set-Cookie), query parameters, route parameters, the
+body of the HTTP message (e.g. HTTP POST data), etc. is encrypted.
+
+The only plaintext data is the hostname. eg. bcit.ca and lower level protocol
+information such as the IP addresses, port numbers, etc.
+Note: https://blog.cloudflare.com/encrypted-sni
+
+## Problem
+What about a man-in-the-middle attack?
+Traffic is routed through a malicious individual.
+
+## Key Idea
+TLS does NOT exchange public keys like shown in the previous slides due to man-in-the-middle (MITM) attacks.
+Solution to the MITM attack: The server sends a client a Digital Certificate which contains a public key.
+
+## Digital Certificate
+- Used to prove/verify ownership of a public key
+- Sometimes called “public key certificates”
+- Data is encrypted with the private key of a Certificate Authority
+-- Everyone can decrypt this since everyone has access to the public keys of the CA (the public keys of the root CAs are loaded onto your
+computer)
+
+## Getting a Digital Certificate
+Note: in order to prove that you own a domain, as part of the verification process a challenge is issued.
+For example: create a DNS record with a given value, or serve a
+particular HTTP page.
+See: https://letsencrypt.org/how-it-works/#domain-validation
+
+## Digital Certificates from root CAs
+- These provide the public keys of the CA (Certificate Authority)
+- The public keys from the CA allow us to verify any certificate which that CA has signed (encrypted using the corresponding private key)
+
+## Certificate Key Replacement?
+- Can a malicious user replace a legitimate key in a certificate with their
+own key?
+- Why or why not?
+
+## Certificate Key Replacement?
+- It’s not possible for a malicious user to simply swap the public key in a digital certificate because it is encrypted using the private key of the CA – remember that the client has the public key, and is therefore able to verify the signature.
+- Swapping out one public key with another would cause the signature verification to fail.
+
+## Lets Encrypt
+- https://letsencrypt.org/
+- Non-profit Certificate Authority (CA)
+- Certificates last 90 days, but you can automatically renew them
+-- Use cron to schedule renewals
+Quick demo on http://c3015.cfenn.com → let’s make it:
+https://c3015.cfenn.com
+Suggested reading: https://letsencrypt.org/how-it-works/
+
+## Additional resources on this topic
+● https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-e
+ncrypt-on-ubuntu-22-04
+● https://www.cloudflare.com/en-ca/learning/ssl/why-use-tls-1.3/
+● In depth look at TLS v1.3: https://blog.cloudflare.com/rfc-8446-aka-tls-1-3
+
+# Review
+- What is symmetric key cryptography?
+The same secret key is used for encryption and decryption for symmetric key ciphers
+Advanced Encryption Standard (AES) is the symmetric key cryptography
+algorithm that should be used these days.
+
+- What is asymmetric key cryptography?
+● A keypair is generated
+● The keypair consists of a public key and a private key
+● For ensuring confidentiality of data in transit, a message is encrypted using
+the public key can only be decrypted using the corresponding private key
+
+● What does TLS stand for?
+TLS stands for Transport Layer Security. It is a cryptographic protocol designed to provide secure communication over a computer network, typically between a client (such as a web browser) and a server (such as a website). TLS ensures privacy and data integrity for the transmission of sensitive information, such as login credentials, payment details, and other personal information.
+
+● What is SSL?
+SSL stands for Secure Sockets Layer. It was the predecessor to Transport Layer Security (TLS), and both terms are often used interchangeably today, though TLS has superseded SSL in terms of security and implementation.
+
+● What HTTP data is encrypted when using HTTPS?
+
+
+● What is a digital certificate used for?
+
+
+● When using TLS, what properties does the secure channel provide?
+
