@@ -266,9 +266,54 @@ SSL stands for Secure Sockets Layer. It was the predecessor to Transport Layer S
 
 ● What HTTP data is encrypted when using HTTPS?
 
+When using HTTPS (HTTP Secure), which is based on either SSL (Secure Sockets Layer) or TLS (Transport Layer Security), the following HTTP data is encrypted to ensure confidentiality and security:
+
+Request and Response Headers:
+
+Request Headers: Headers such as Host, User-Agent, Referer, Cookie, etc., which are sent by the client (e.g., web browser) to the server.
+Response Headers: Headers such as Server, Content-Type, Set-Cookie, etc., which are sent by the server to the client in response to the request.
+Request and Response Body:
+
+Request Body: Data sent by the client to the server in methods like POST, PUT, or PATCH. This includes form data, JSON payloads, file uploads, etc.
+Response Body: Data sent by the server back to the client in response to the request. This includes HTML content, JSON responses, file downloads, etc.
+URL Paths and Query Parameters:
+
+The path and query parameters of the URL (e.g., https://example.com/path/to/resource?param1=value1&param2=value2) are encrypted. This ensures that the entire URL is protected from eavesdropping.
+Cookies:
+
+Cookies sent between the client and server are encrypted. This includes both the cookies set by the server (Set-Cookie header) and those sent back to the server with subsequent requests (Cookie header).
+Any Other HTTP Data:
+
+Any other data transmitted over the HTTP connection, including headers, bodies, and parameters, is encrypted to prevent interception and tampering.
 
 ● What is a digital certificate used for?
 
+In PHP and more broadly in web applications, digital certificates serve several crucial purposes related to security and authentication. Here are the primary uses of digital certificates:
+
+Authentication: Digital certificates are used to authenticate the identity of entities (such as websites or servers) on the internet. They provide a means for clients (such as web browsers) to verify that they are communicating with the intended and legitimate server. This helps prevent man-in-the-middle attacks where an attacker could intercept and manipulate communication between the client and server.
+
+Encryption: Digital certificates are used to establish secure encrypted connections over the internet. They enable the use of protocols like HTTPS (HTTP Secure), which encrypts data exchanged between a client and server to ensure confidentiality. Encryption prevents eavesdropping and ensures that sensitive information (such as login credentials, payment details, and personal data) remains private during transmission.
+
+Integrity: Digital certificates include digital signatures that ensure data integrity. By signing data with a private key associated with the certificate, servers can prove that the data has not been altered or tampered with since it was signed. Clients can verify the integrity of received data by using the public key contained in the certificate to verify the digital signature.
+
+Trust: Digital certificates are issued by trusted Certificate Authorities (CAs). These CAs are responsible for verifying the identity of the certificate holder before issuing a certificate. Web browsers and other clients trust certificates issued by well-known CAs that are included in their trusted root certificate stores. This trust relationship ensures that clients can rely on the authenticity and security of the websites they visit.
 
 ● When using TLS, what properties does the secure channel provide?
 
+When using TLS (Transport Layer Security), the secure channel it provides ensures several important properties that are essential for secure communication over the internet:
+
+Encryption: TLS encrypts the data exchanged between the client and server, ensuring confidentiality. This means that if intercepted by an unauthorized party, the encrypted data cannot be read without the decryption key.
+
+Authentication: TLS provides mechanisms for both server and, optionally, client authentication:
+
+Server Authentication: The server presents its digital certificate to prove its identity to the client. The client verifies the authenticity of the certificate using a chain of trust leading back to a trusted Certificate Authority (CA).
+Client Authentication (optional): In some cases, TLS can also authenticate the client to the server using client certificates. This ensures that the server knows the client's identity as well.
+Integrity: TLS ensures that the data transmitted between the client and server is not altered or tampered with during transmission. This is achieved through the use of Message Authentication Codes (MACs) and cryptographic hash functions.
+
+Forward Secrecy: TLS supports forward secrecy, which means that even if an attacker were to obtain the server's private key in the future, they would not be able to decrypt past communications. This is achieved through the use of ephemeral key exchange mechanisms like Diffie-Hellman (DH) or Elliptic Curve Diffie-Hellman (ECDH).
+
+Negotiated Cipher Suites: TLS allows the client and server to negotiate and agree upon a cipher suite to use for encryption and authentication during the TLS handshake. The chosen cipher suite dictates the encryption algorithm, key exchange method, and other cryptographic parameters used for secure communication.
+
+Secure Handshake: TLS includes a handshake protocol that securely establishes the parameters of the encrypted session before any application data is transmitted. This involves negotiating the encryption algorithms, exchanging cryptographic keys, and verifying the authenticity of the parties involved.
+
+Session Resumption: TLS supports session resumption mechanisms to speed up subsequent connections between the same client and server. This allows the parties to reuse previously established session parameters, reducing the overhead of performing a full TLS handshake.

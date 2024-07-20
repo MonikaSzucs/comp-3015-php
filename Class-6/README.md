@@ -102,9 +102,17 @@ if (password_verify($attemptedPassword, $user->password_digest)) {
 
 ## Additional info + tips/general rules
 - Don’t write your own hash functions or any other cryptographic primitives
--- Anyone can write an encryption algo that they can’t break, or a hash functions
-that they can’t find a collision for
+-- Anyone can write an encryption algo that they can’t break, or a hash functions that they can’t find a collision for
 -- Use industry standard algorithms that have been rigorously tested and
 analyzed
 -  All cryptography systems and primitives should be public knowledge
 -- Do not rely on “security through obscurity”
+
+## HttpOnly Session Cookies
+By default we may not be using HttpOnly session cookies:
+Edit your php.ini file (find it using php --ini on the command line)
+Set the session.cookie_httponly value to 1, meaning true:
+
+## setting session Cookies as HttpOnly
+After the session.cookie_httponly is set to 1 (meaning true), we can start a new
+session and see that the session cookie is now HttpOnly:

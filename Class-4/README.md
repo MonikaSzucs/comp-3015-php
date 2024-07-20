@@ -140,8 +140,64 @@ Set-Cookie: cookie_name=cookie_value; Secure
 ```
 
 - What is the difference between cookies and sessions?
+Cookies:
+Storage Location: Cookies are small pieces of data stored on the client's side (i.e., in the user's browser).
+
+Purpose: Cookies are primarily used for state management, tracking user activity, and storing user preferences across different pages or visits to a website.
+
+Size Limitation: Cookies have size limitations (usually up to 4KB) imposed by browsers.
+
+Expiration: Cookies can have an expiration date/time set. They can either be session cookies (stored temporarily and deleted when the browser is closed) or persistent cookies (stored on the user's device for a specified duration).
+
+Accessibility: Cookies can be accessed and modified by both the client-side (JavaScript) and the server-side (via HTTP headers).
+
+Sessions:
+Storage Location: Sessions are stored on the server side.
+
+Purpose: Sessions are used to store temporary data associated with a user's interactions with a web application during a browsing session.
+
+Identification: Sessions are typically identified by a unique session identifier (Session ID), which is usually stored in a cookie on the client side.
+
+Data Storage: Session data can include user authentication tokens, shopping cart contents, and other session-specific information.
+
+Lifetime: Sessions typically expire after a certain period of inactivity or when the user closes the browser.
+
+Key Differences:
+Storage: Cookies store information on the client side, while sessions store information on the server side.
+
+Handling: Cookies are handled by the client's browser, whereas sessions are managed by the web server.
+
+Data Size: Cookies have a size limit (up to 4KB), while sessions can store larger amounts of data since they are stored on the server.
+
+Security: Sessions are considered more secure for storing sensitive information because session data is stored on the server and not exposed to the client (except for the session ID stored in a cookie).
+
+Lifetime: Cookies can have a longer lifespan if they are persistent, while sessions typically last only as long as the user is interacting with the application.
+
 -- Think client-server architecture
+
+
 - How does the server know which session (and associated data) belongs to which client?
+The server identifies which session (and associated data) belongs to which client primarily through the use of a session identifier (Session ID). Here's how it typically works:
+
+Session Initialization: When a client (usually a web browser) makes a request to the server for the first time, the server generates a unique Session ID for this client's session. This Session ID is a random string of characters that is unique for each session.
+
+Session ID Storage: The server then sends this Session ID back to the client, typically in the form of a cookie or sometimes as part of the URL (although this is less common due to security considerations).
+
+Subsequent Requests: On subsequent requests from the client, the client's browser automatically includes this Session ID in the request, usually as a cookie named something like session_id.
+
+Server-Side Mapping: When the server receives a request from the client, it looks at the Session ID included in the request. Using this Session ID, the server can retrieve the corresponding session data that it has stored in its memory or database.
+
+Session Data Access: The server can then access and manipulate the session data associated with that Session ID. This data might include user-specific information (like authentication status), shopping cart contents, preferences, etc.
+
+Session Expiration: Sessions typically have an expiration time or are terminated after a period of inactivity. When a session expires (either due to timeout or explicit logout), the associated session data is typically deleted from the server's storage.
+
+Key Points:
+Security: It's crucial that the Session ID is generated securely (random and unpredictable) to prevent attackers from guessing or hijacking sessions.
+
+Persistence: If the client's browser supports cookies and the server has set the session cookie to be persistent, the Session ID cookie will persist across browser sessions, ensuring continuity of the session even if the browser is closed and reopened.
+
+State Management: Sessions allow web applications to maintain stateful interactions with clients without relying solely on client-side storage (like cookies), which can be manipulated or tampered with.
+
 -- This is probably one of the most important questions to be able to answer
 
 
